@@ -24,6 +24,7 @@ def play(controller_output):
     global i, j, m
 
     if not game_on and '+' in controller_output.get('Center'):
+        # Start the game
         print('Game on!')
         game_on = True
     elif game_on:
@@ -37,7 +38,11 @@ def play(controller_output):
             i, j, m = update_matrix(i, j, direction, m)
             print(i, j)
             print(m)
+        
         if 'A' in controller_output.get('Main'):
             print('BOOM!!!!')
-    else:
-        pass
+        
+        if '-' in controller_output.get('Center'):
+            # End the game
+            game_on = False
+            print('Game off...')
