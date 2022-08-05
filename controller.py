@@ -1,6 +1,7 @@
 MAIN_BUTTONS = ['ZR', 'ZL', 'R', 'L', 'X', 'A', 'B', 'Y']
 CENTER_BUTTONS = ['Circle', 'Home', '+', '-']
 
+# --- Ancillary functions ---
 def pad_left(binary, size):
     while len(binary) < size:
         binary = '0' + binary
@@ -33,7 +34,12 @@ def d_pad(byte):
         d_direction = [0, 0]
     return d_direction
 
+# --- Main function ---
 def interpret(raw_bytes):
+    # Will intake 7 bytes, as 8th byte from controller is always zero
+    if len(raw_bytes) != 7:
+        raise ValueError('Controller input of 7 bytes required...')
+
     # Main
     byte_main = raw_bytes[0]
     main_binary = pad_left(bin(byte_main).replace('0b', ''), 8)

@@ -9,6 +9,7 @@ N_SLEEP = 1
 def get_controller_endpoint():
     dev = None
 
+    print('Checking for controller...')
     while dev is None:
         # Repeatedly check if controller plugged in, at N_SLEEP second intervals
         dev = usb.core.find(idVendor=VID, idProduct=PID)
